@@ -33,3 +33,6 @@
 
 # Artifacts
 build/
+
+# Editors
+.idea/
