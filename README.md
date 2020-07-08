@@ -61,5 +61,6 @@ These operations are already wrapped inside `fn_wrapper`'s to profit from logica
 Built-in operations:
 
 * `eq(x)(y) // x == y`
+* `ne(x)(y) // x != y`
 
 [predicates.h](include/funktions/predicates.h)

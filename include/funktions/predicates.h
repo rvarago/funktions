@@ -20,6 +20,19 @@ constexpr auto eq(T &&value) {
     }};
 }
 
+/**
+ * Wraps the inequality operation, such that ne(x)(y) is equivalent to x != y.
+ * @tparam T type of the argument to be checked for inequality.
+ * @param value argument to be checked for inequality.
+ * @return a predicate wrapped in an fn_wrapper that upon evaluation checks the inequality of its arguments.
+ */
+template <typename T>
+constexpr auto ne(T &&value) {
+    return fn_wrapper{[v = std::forward<T>(value)](auto &&other) {
+        return !eq(std::forward<T>(v))(std::forward<decltype(other)>(other));
+    }};
+}
+
 }
 
 #endif
