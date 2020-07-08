@@ -1,0 +1,49 @@
+cmake_minimum_required(VERSION 3.14)
+project(funktions LANGUAGES CXX)
+
+option(BUILD_TESTS "Build test executable" OFF)
+
+add_library(${PROJECT_NAME} INTERFACE)
+
+add_library(rvarago::${PROJECT_NAME} ALIAS ${PROJECT_NAME})
+
+target_include_directories(${PROJECT_NAME}
+    INTERFACE
+        $<INSTALL_INTERFACE:include>
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+)
+
+target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
+
+# Tests
+
+if(BUILD_TESTS)
+    include(CTest)
+    add_subdirectory(tests)
+endif()
+
+# Installation
+
+include(GNUInstallDirs)
+
+# Generate the config file with the target
+install(TARGETS ${PROJECT_NAME}
+        EXPORT ${PROJECT_NAME}Config
+)
+
+install(DIRECTORY include/
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}
+)
+
+# Make the target be importable from the installation directory
+install(EXPORT ${PROJECT_NAME}Config
+        DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}
+        NAMESPACE rvarago::
+)
+
+# Make the target be importable from the build directory via package registry
+export(EXPORT ${PROJECT_NAME}Config
+       NAMESPACE rvarago::
+)
+
+export(PACKAGE ${PROJECT_NAME})
