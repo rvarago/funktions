@@ -7,6 +7,7 @@ A small C++17 set of utilities for functional composition.
 * [`fn_wrapper`](#fn_wrapper)
 * [`logical_and`](#logical_and)
 * [`logical_or`](#logical_or)
+* [`predicates`](#predicates)
 
 ## <A name="fn_wrapper"/>`fn_wrapper`
 
@@ -50,3 +51,15 @@ auto const y = eq_2_or_6(x); // y = (x == 2) || (x == 6)
 ```
 
 [logical.h](include/funktions/logical.h)
+
+## <A name="predicates"/>`predicates`
+
+A set of reusable and curried predicates for common operations that would otherwise likely be written as inline lambdas.
+
+These operations are already wrapped inside `fn_wrapper`'s to profit from logical combinators.
+
+Built-in operations:
+
+* `eq(x)(y) // x == y`
+
+[predicates.h](include/funktions/predicates.h)
