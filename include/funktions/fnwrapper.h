@@ -44,7 +44,7 @@ class fn_wrapper {
  */
 template <typename Function>
 auto fn(Function &&f) -> fn_wrapper<Function> {
-    return fn_wrapper<Function>{f};
+    return fn_wrapper<Function>{std::forward<Function>(f)};
 }
 
 }
