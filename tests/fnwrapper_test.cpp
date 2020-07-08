@@ -4,7 +4,7 @@
 
 using namespace rvarago::funktions;
 
-TEST_CASE("fn_wrapper wraps a generic callable that can be later called") {
+TEST_CASE("fn_wrapper wraps a generic callable that can be later called", "[fn_wrapper]") {
     auto const model = [](auto const x, auto const y) { return std::to_string(2 * x + y); };
 
     auto const model_wrapped = fn(model);

@@ -6,7 +6,7 @@
 using namespace rvarago::funktions;
 using namespace rvarago::funktions::dsl;
 
-TEST_CASE("fn_wrappers can be combined by logical-and's") {
+TEST_CASE("fn_wrappers can be combined by logical-and's", "[logical]") {
     auto const gt_2 = [](auto const x) { return x > 2; };
     auto const lt_6 = [](auto const x) { return x < 6; };
 
@@ -20,7 +20,7 @@ TEST_CASE("fn_wrappers can be combined by logical-and's") {
     }
 }
 
-TEST_CASE("fn_wrappers can be combined by logical-or's") {
+TEST_CASE("fn_wrappers can be combined by logical-or's", "[logical]") {
     auto const eq_1 = [](auto const x) { return x == 1; };
     auto const eq_4 = [](auto const x) { return x == 4; };
 
@@ -34,7 +34,7 @@ TEST_CASE("fn_wrappers can be combined by logical-or's") {
     }
 }
 
-TEST_CASE("fn_wrappers can be combined by logical-and's and logical-or's") {
+TEST_CASE("fn_wrappers can be combined by logical-and's and logical-or's", "[logical]") {
     auto const gt_2 = [](auto const x) { return x > 2; };
     auto const lt_6 = [](auto const x) { return x < 6; };
     auto const eq_8 = [](auto const x) { return x == 8; };
