@@ -14,7 +14,7 @@ class fn_wrapper {
     Function _f;
 
   public:
-    explicit fn_wrapper(Function f) : _f{f} {
+    constexpr explicit fn_wrapper(Function f) : _f{f} {
     }
 
     template <typename... Args>

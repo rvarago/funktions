@@ -12,6 +12,7 @@ FetchContent_MakeAvailable(catch)
 add_executable(${PROJECT_NAME}
     fnwrapper_test.cpp
     logical_test.cpp
+    predicates_test.cpp
     main.cpp
 )
 
