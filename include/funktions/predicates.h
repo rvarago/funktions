@@ -30,6 +30,18 @@ constexpr auto ne(T &&value) {
 }
 
 /**
+ * Wraps the less-than operation, such that lt(x)(y) is equivalent to y < x.
+ * @tparam T type of the argument to be checked for comparison.
+ * @param value argument to be checked for comparison.
+ * @return a predicate wrapped in an fn_wrapper that upon evaluation checks if the second argument is less-than the
+ * first.
+ */
+template <typename T>
+constexpr auto lt(T &&value) {
+    return fn_wrapper{[v = std::forward<T>(value)](auto &&other) { return std::forward<decltype(other)>(other) < v; }};
+}
+
+/**
  * Wraps the greater-than operation, such that gt(x)(y) is equivalent to y > x.
  * @tparam T type of the argument to be checked for comparison.
  * @param value argument to be checked for comparison.

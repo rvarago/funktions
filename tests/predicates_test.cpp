@@ -27,6 +27,16 @@ TEST_CASE("ne(x)(y) is equivalent to y != x", "[predicates]") {
     CHECK(expected == got);
 }
 
+TEST_CASE("lt(x)(y) is equivalent to y < x", "[predicates]") {
+    auto const x = GENERATE(take(100, random(-100, 100)));
+    auto const y = GENERATE(take(100, random(-100, 100)));
+
+    auto const expected = y < x;
+    auto const got = lt(x)(y);
+
+    CHECK(expected == got);
+}
+
 TEST_CASE("gt(x)(y) is equivalent to y > x", "[predicates]") {
     auto const x = GENERATE(take(100, random(-100, 100)));
     auto const y = GENERATE(take(100, random(-100, 100)));
