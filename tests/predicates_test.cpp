@@ -23,21 +23,21 @@ auto generate_randoms() {
 
 }
 
-TEMPLATE_TEST_CASE("eq(x)(y) is equivalent to x == y", "[predicates]", int, double, std::string) {
+TEMPLATE_TEST_CASE("eq(x)(y) is equivalent to y == x", "[predicates]", int, double, std::string) {
     auto const x = generate_randoms<TestType>();
     auto const y = generate_randoms<TestType>();
 
-    auto const expected = x == y;
+    auto const expected = y == x;
     auto const got = eq(x)(y);
 
     CHECK(expected == got);
 }
 
-TEMPLATE_TEST_CASE("ne(x)(y) is equivalent to x != y", "[predicates]", int, double, std::string) {
+TEMPLATE_TEST_CASE("ne(x)(y) is equivalent to y != x", "[predicates]", int, double, std::string) {
     auto const x = generate_randoms<TestType>();
     auto const y = generate_randoms<TestType>();
 
-    auto const expected = x != y;
+    auto const expected = y != x;
     auto const got = ne(x)(y);
 
     CHECK(expected == got);
