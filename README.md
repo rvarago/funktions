@@ -83,5 +83,6 @@ Built-in operations:
 
 * `eq(x)(y) // y == x`
 * `ne(x)(y) // y != x`
+* `gt(x)(y) // y > x`
 
 [predicates.h](include/funktions/predicates.h)

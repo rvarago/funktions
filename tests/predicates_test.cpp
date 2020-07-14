@@ -42,3 +42,13 @@ TEMPLATE_TEST_CASE("ne(x)(y) is equivalent to y != x", "[predicates]", int, doub
 
     CHECK(expected == got);
 }
+
+TEMPLATE_TEST_CASE("gt(x)(y) is equivalent to y > x", "[predicates]", int, double, std::string) {
+    auto const x = generate_randoms<TestType>();
+    auto const y = generate_randoms<TestType>();
+
+    auto const expected = y > x;
+    auto const got = gt(x)(y);
+
+    CHECK(expected == got);
+}
