@@ -7,6 +7,7 @@ A small C++17 set of utilities for functional composition.
 * [`fn_wrapper`](#fn_wrapper)
 * [`logical_and`](#logical_and)
 * [`logical_or`](#logical_or)
+* [`chain`](#chain)
 * [`predicates`](#predicates)
 
 ## <A name="fn_wrapper"/>`fn_wrapper`
@@ -51,6 +52,26 @@ auto const y = eq_2_or_6(x); // y = (x == 2) || (x == 6)
 ```
 
 [logical.h](include/funktions/logical.h)
+
+## <A name="chain"/>`chain`
+
+An overload for the `operator>>` that acts on two functions wrapped in `fn_wrapper`'s to produce a third function (their composition),
+which when invoked with a pack of arguments, forwards them to the first function and then applies its
+outcome into the second function.
+
+Example:
+
+```Cpp
+auto const plus_1 = [](auto const x) { return x + 1; };
+auto const square = [](auto const x) { return x * x; };
+
+auto const plus_1_then_square = fn(plus_1) >> square;
+
+auto const y = plus_1_then_square(x); // y = (x + 1) * (x + 1)
+```
+
+[chain.h](include/funktions/chain.h)
+
 
 ## <A name="predicates"/>`predicates`
 

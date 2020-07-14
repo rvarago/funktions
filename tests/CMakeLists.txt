@@ -10,6 +10,7 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(catch)
 
 add_executable(${PROJECT_NAME}
+    chain_test.cpp
     fnwrapper_test.cpp
     logical_test.cpp
     predicates_test.cpp
