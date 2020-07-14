@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.14)
 project(funktions LANGUAGES CXX)
 
 option(BUILD_TESTS "Build test executable" OFF)
+option(BUILD_EXAMPLES "Build example executables" OFF)
 
 add_library(${PROJECT_NAME} INTERFACE)
 
@@ -20,6 +21,10 @@ target_compile_features(${PROJECT_NAME} INTERFACE cxx_std_17)
 if(BUILD_TESTS)
     include(CTest)
     add_subdirectory(tests)
+endif()
+
+if(BUILD_EXAMPLES)
+    add_subdirectory(examples)
 endif()
 
 # Installation

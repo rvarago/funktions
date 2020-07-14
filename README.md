@@ -2,6 +2,28 @@
 
 A small C++17 set of utilities for functional composition.
 
+```Cpp
+enum class status { Idle, Busy };
+
+struct device {
+    long id;
+    long vendor_id;
+    status current_status;
+};
+
+std::vector<device> const devices = fetch_all_devices();
+
+// Given a device d:
+//  d.vendor_id == 2 and d.current_status == status::Idle
+auto const query = fn(get_vendor_id) >> eq(2)
+                    & fn(get_current_status) >> eq(status::Idle);
+
+// 'fn', 'eq', '>>', and '&' are some of the utilities provided by
+// funktions to build fluent Domain-Specific Languages.
+
+auto const device = std::find_if(devices.begin(), devices.end(), query);
+```
+
 # Utilities
 
 * [`fn_wrapper`](#fn_wrapper)
@@ -87,3 +109,7 @@ Built-in operations:
 * `gt(x)(y) // y > x`
 
 [predicates.h](include/funktions/predicates.h)
+
+# Examples
+
+[device_validation.cpp](examples/device_validation.cpp)
