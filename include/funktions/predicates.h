@@ -5,7 +5,7 @@
 
 #include <utility>
 
-namespace rvarago::funktions::preds {
+namespace rvarago::funktions {
 
 /**
  * Wraps the equality operation, such that eq(x)(y) is equivalent to x == y.

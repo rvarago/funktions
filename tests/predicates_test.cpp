@@ -6,7 +6,6 @@
 #include <type_traits>
 
 using namespace rvarago::funktions;
-using namespace rvarago::funktions::preds;
 
 namespace {
 
