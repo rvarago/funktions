@@ -11,10 +11,13 @@ pool:
 steps:
 
   - script: |
-      cmake . -DBUILD_TESTS=ON && cmake --build .
+      cmake . -DBUILD_TESTS=ON -DBUILD_EXAMPLES=ON && cmake --build .
     displayName: 'Build'
 
   - script: |
       ctest -VV .
     displayName: 'Test'
 
+  - script: |
+      cmake --build . --target funktions_examples_run
+    displayName: 'Examples'
