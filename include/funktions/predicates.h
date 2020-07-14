@@ -26,9 +26,7 @@ constexpr auto eq(T &&value) {
  */
 template <typename T>
 constexpr auto ne(T &&value) {
-    return fn_wrapper{[v = std::forward<T>(value)](auto &&other) {
-        return !eq(std::forward<T>(v))(std::forward<decltype(other)>(other));
-    }};
+    return fn_wrapper{[v = std::forward<T>(value)](auto &&other) { return std::forward<decltype(other)>(other) != v; }};
 }
 
 /**
