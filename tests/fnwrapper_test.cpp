@@ -18,5 +18,7 @@ TEST_CASE("fn_wrapper wraps a generic callable that can be later called", "[fn_w
     auto const x = generate_random_ints();
     auto const y = generate_random_ints();
 
-    CHECK(model_wrapped(x, y) == model(x, y));
+    auto const expected = model(x, y);
+    auto const got = model_wrapped(x, y);
+    CHECK(expected == got);
 }
