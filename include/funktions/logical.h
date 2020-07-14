@@ -6,7 +6,7 @@
 namespace rvarago::funktions::dsl {
 
 /**
- * Wraps the the predicates _left_ and _right_ themselves wrapped in `fn_wrapper`'s to produce a third predicate, which
+ * Wraps the predicates _left_ and _right_ themselves wrapped in `fn_wrapper`'s to produce a third predicate, which
  * when invoked with a pack of arguments, forwards them to each predicate and computes the logical-and of their
  * outcomes.
  * @tparam PredicateA type of the right predicate.
@@ -26,7 +26,7 @@ constexpr auto operator&(fn_wrapper<PredicateA> const left, PredicateB const rig
 }
 
 /**
- * Wraps the the predicates _left_ and _right_ themselves wrapped in `fn_wrapper`'s to produce a third predicate, which
+ * Wraps the predicates _left_ and _right_ themselves wrapped in `fn_wrapper`'s to produce a third predicate, which
  * when invoked with a pack of arguments, forwards them to each predicate and computes the logical-or of their
  * outcomes.
  * @tparam PredicateA type of the right predicate.
