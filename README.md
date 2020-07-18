@@ -3,7 +3,7 @@
 A small C++17 set of utilities for functional composition.
 
 ```Cpp
-enum class status { Idle, Busy };
+enum class status { Idle, Waiting, Busy };
 
 struct device {
     long id;
@@ -14,11 +14,11 @@ struct device {
 std::vector<device> const devices = fetch_all_devices();
 
 // Given a device d:
-//  d.vendor_id == 2 and d.current_status == status::Idle
+//  d.vendor_id == 2 and d.current_status != status::Busy
 auto const query = fn(get_vendor_id) >> eq(2)
-                    & fn(get_current_status) >> eq(status::Idle);
+                    & fn(get_current_status) >> ne(status::Busy);
 
-// 'fn', 'eq', '>>', and '&' are some of the utilities provided by
+// 'fn', 'eq', 'ne', '>>', and '&' are some of the utilities provided by
 // funktions to build fluent Domain-Specific Languages.
 
 auto const device = std::find_if(devices.begin(), devices.end(), query);
@@ -32,19 +32,23 @@ auto const device = std::find_if(devices.begin(), devices.end(), query);
 * [`chain`](#chain)
 * [`predicates`](#predicates)
 
+[funktions/all.h](include/funktions/all.h)
+
 ## <A name="fn_wrapper"/>`fn_wrapper`
 
-A wrapper around a generic function-like type to make DSLs created via operator-overloading less intrusive,
-which when invoked with a pack of arguments forwards them to the wrapped callable.
+A wrapper around a generic function-like type to make DSLs created via operator-overloading less intrusive.
 
-[fnwrapper.h](include/funktions/fnwrapper.h)
+When invoked with a pack of arguments forwards them to the wrapped callable.
+
+[funktions/fnwrapper.h](include/funktions/fnwrapper.h)
 
 ## <A name="logical_and"/>`logical_and`
 
-An overload for the `operator&` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate,
-which when invoked with a pack of arguments, forwards them to each predicate and computes the logical-and of their outcomes.
+An overload for the `operator&` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate.
 
-Example:
+When invoked with a pack of arguments, forwards them to each predicate and computes the logical-and of their outcomes.
+
+*Example*:
 
 ```Cpp
 auto const gt_2 = [](auto const x) { return x > 2; };
@@ -55,14 +59,15 @@ auto const bt_2_6 = fn(gt_2) & fn(lt_6);
 auto const y = bt_2_6(x); // y = (x > 2) && (x < 6)
 ```
 
-[logical.h](include/funktions/logical.h)
+[funktions/logical.h](include/funktions/logical.h)
 
 ## <A name="logical_or"/>`logical_or`
 
-An overload for the `operator|` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate,
-which when invoked with a pack of arguments, forwards them to each predicate and computes the logical-or of their outcomes.
+An overload for the `operator|` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate.
 
-Example:
+When invoked with a pack of arguments, forwards them to each predicate and computes the logical-or of their outcomes.
+
+*Example*:
 
 ```Cpp
 auto const eq_2 = [](auto const x) { return x == 2; };
@@ -73,15 +78,16 @@ auto const eq_2_or_6 = fn(eq_2) | fn(eq_6);
 auto const y = eq_2_or_6(x); // y = (x == 2) || (x == 6)
 ```
 
-[logical.h](include/funktions/logical.h)
+[funktions/logical.h](include/funktions/logical.h)
 
 ## <A name="chain"/>`chain`
 
-An overload for the `operator>>` that acts on two functions wrapped in `fn_wrapper`'s to produce a third function (their composition),
-which when invoked with a pack of arguments, forwards them to the first function and then applies its
+An overload for the `operator>>` that acts on two functions wrapped in `fn_wrapper`'s to produce a third function (their composition).
+
+When invoked with a pack of arguments, forwards them to the first function and then applies its
 outcome into the second function.
 
-Example:
+*Example*:
 
 ```Cpp
 auto const plus_1 = [](auto const x) { return x + 1; };
@@ -92,7 +98,7 @@ auto const plus_1_then_square = fn(plus_1) >> square;
 auto const y = plus_1_then_square(x); // y = (x + 1) * (x + 1)
 ```
 
-[chain.h](include/funktions/chain.h)
+[funktions/chain.h](include/funktions/chain.h)
 
 
 ## <A name="predicates"/>`predicates`
@@ -108,7 +114,7 @@ Built-in operations:
 * `lt(x)(y) // y < x`
 * `gt(x)(y) // y > x`
 
-[predicates.h](include/funktions/predicates.h)
+[funktions/predicates.h](include/funktions/predicates.h)
 
 # Examples
 

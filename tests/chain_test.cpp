@@ -31,3 +31,23 @@ TEST_CASE("chain can compose several functions where the domain of the first fun
     auto const got = (fn(plus_1) >> square >> to_string)(x);
     CHECK(expected == got);
 }
+
+TEST_CASE("chain can be used for projections", "[chain]") {
+    struct connection {
+        int id;
+    };
+    struct device {
+        connection conn;
+    };
+
+    auto const get_id = [](connection const x) { return x.id; };
+    auto const get_connection = [](device const x) { return x.conn; };
+
+    auto const id = GENERATE(take(100, random(-100, 100)));
+    auto const dev = device{connection{id}};
+
+    auto const expected = id;
+    auto const got = (fn(get_connection) >> get_id)(dev);
+
+    CHECK(expected == got);
+}
