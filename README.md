@@ -34,17 +34,19 @@ auto const device = std::find_if(devices.begin(), devices.end(), query);
 
 ## <A name="fn_wrapper"/>`fn_wrapper`
 
-A wrapper around a generic function-like type to make DSLs created via operator-overloading less intrusive,
-which when invoked with a pack of arguments forwards them to the wrapped callable.
+A wrapper around a generic function-like type to make DSLs created via operator-overloading less intrusive.
+
+When invoked with a pack of arguments forwards them to the wrapped callable.
 
 [fnwrapper.h](include/funktions/fnwrapper.h)
 
 ## <A name="logical_and"/>`logical_and`
 
-An overload for the `operator&` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate,
-which when invoked with a pack of arguments, forwards them to each predicate and computes the logical-and of their outcomes.
+An overload for the `operator&` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate.
 
-Example:
+When invoked with a pack of arguments, forwards them to each predicate and computes the logical-and of their outcomes.
+
+*Example*:
 
 ```Cpp
 auto const gt_2 = [](auto const x) { return x > 2; };
@@ -59,10 +61,11 @@ auto const y = bt_2_6(x); // y = (x > 2) && (x < 6)
 
 ## <A name="logical_or"/>`logical_or`
 
-An overload for the `operator|` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate,
-which when invoked with a pack of arguments, forwards them to each predicate and computes the logical-or of their outcomes.
+An overload for the `operator|` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate.
 
-Example:
+When invoked with a pack of arguments, forwards them to each predicate and computes the logical-or of their outcomes.
+
+*Example*:
 
 ```Cpp
 auto const eq_2 = [](auto const x) { return x == 2; };
@@ -77,11 +80,12 @@ auto const y = eq_2_or_6(x); // y = (x == 2) || (x == 6)
 
 ## <A name="chain"/>`chain`
 
-An overload for the `operator>>` that acts on two functions wrapped in `fn_wrapper`'s to produce a third function (their composition),
-which when invoked with a pack of arguments, forwards them to the first function and then applies its
+An overload for the `operator>>` that acts on two functions wrapped in `fn_wrapper`'s to produce a third function (their composition).
+
+When invoked with a pack of arguments, forwards them to the first function and then applies its
 outcome into the second function.
 
-Example:
+*Example*:
 
 ```Cpp
 auto const plus_1 = [](auto const x) { return x + 1; };
