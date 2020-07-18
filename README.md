@@ -32,13 +32,15 @@ auto const device = std::find_if(devices.begin(), devices.end(), query);
 * [`chain`](#chain)
 * [`predicates`](#predicates)
 
+[funktions/all.h](include/funktions/all.h)
+
 ## <A name="fn_wrapper"/>`fn_wrapper`
 
 A wrapper around a generic function-like type to make DSLs created via operator-overloading less intrusive.
 
 When invoked with a pack of arguments forwards them to the wrapped callable.
 
-[fnwrapper.h](include/funktions/fnwrapper.h)
+[funktions/fnwrapper.h](include/funktions/fnwrapper.h)
 
 ## <A name="logical_and"/>`logical_and`
 
@@ -57,7 +59,7 @@ auto const bt_2_6 = fn(gt_2) & fn(lt_6);
 auto const y = bt_2_6(x); // y = (x > 2) && (x < 6)
 ```
 
-[logical.h](include/funktions/logical.h)
+[funktions/logical.h](include/funktions/logical.h)
 
 ## <A name="logical_or"/>`logical_or`
 
@@ -76,7 +78,7 @@ auto const eq_2_or_6 = fn(eq_2) | fn(eq_6);
 auto const y = eq_2_or_6(x); // y = (x == 2) || (x == 6)
 ```
 
-[logical.h](include/funktions/logical.h)
+[funktions/logical.h](include/funktions/logical.h)
 
 ## <A name="chain"/>`chain`
 
@@ -96,7 +98,7 @@ auto const plus_1_then_square = fn(plus_1) >> square;
 auto const y = plus_1_then_square(x); // y = (x + 1) * (x + 1)
 ```
 
-[chain.h](include/funktions/chain.h)
+[funktions/chain.h](include/funktions/chain.h)
 
 
 ## <A name="predicates"/>`predicates`
@@ -112,7 +114,7 @@ Built-in operations:
 * `lt(x)(y) // y < x`
 * `gt(x)(y) // y > x`
 
-[predicates.h](include/funktions/predicates.h)
+[funktions/predicates.h](include/funktions/predicates.h)
 
 # Examples
 

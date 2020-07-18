@@ -1,6 +1,4 @@
-#include <funktions/chain.h>
-#include <funktions/logical.h>
-#include <funktions/predicates.h>
+#include <funktions/all.h>
 
 #include <algorithm>
 #include <cassert>
