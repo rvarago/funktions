@@ -15,7 +15,7 @@ namespace {
 using identifier = long;
 using vendor_identifier = long;
 
-enum class status { Idle, Busy };
+enum class status { Idle, Waiting, Busy };
 
 struct device {
     identifier id;
@@ -39,10 +39,11 @@ int main(int, char *[]) {
         {identifier{2}, vendor_identifier{1}, status{status::Busy}},
         {identifier{3}, vendor_identifier{2}, status{status::Idle}},
         {identifier{4}, vendor_identifier{2}, status{status::Busy}},
+        {identifier{5}, vendor_identifier{2}, status{status::Waiting}},
     };
 
     // Given a device d: d.vendor_id == 2 and d.current_status == status::Idle
-    auto const search_query = fn(get_vendor_id) >> eq(2) & fn(get_current_status) >> eq(status::Idle);
+    auto const search_query = fn(get_vendor_id) >> eq(2) & fn(get_current_status) >> ne(status::Busy);
 
     auto const device_found = std::find_if(device_registry.cbegin(), device_registry.cend(), search_query);
 
