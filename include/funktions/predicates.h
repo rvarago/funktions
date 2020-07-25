@@ -54,14 +54,19 @@ constexpr auto gt(T &&value) {
 }
 
 /**
- * Wraps the greater-than operation, such that gt(x)(y) is equivalent to y > x.
- * @tparam T type of the argument to be checked for comparison.
- * @param value argument to be checked for comparison.
- * @return a predicate wrapped in an fn_wrapper that upon evaluation checks if the second argument is greater-than the
- * first.
+ * Wraps the y == true operation in a curried-form, such that is_true()(y) is equivalent to y == true.
+ * @return a predicate wrapped in an fn_wrapper that upon evaluation checks if the argument is equals to true.
  */
 constexpr auto is_true() {
     return fn_wrapper{[](auto &&other) { return static_cast<bool>(std::forward<decltype(other)>(other)); }};
+}
+
+/**
+ * Wraps the y == false operation in a curried-form, such that is_false()(y) is equivalent to y == false.
+ * @return a predicate wrapped in an fn_wrapper that upon evaluation checks if the argument is equals to false.
+ */
+constexpr auto is_false() {
+    return fn_wrapper{[](auto &&other) { return !static_cast<bool>(std::forward<decltype(other)>(other)); }};
 }
 
 }

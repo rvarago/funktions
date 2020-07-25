@@ -114,6 +114,7 @@ Built-in operations:
 * `lt(x)(y)         // y < x`
 * `gt(x)(y)         // y > x`
 * `is_true()(y)     // y == true`
+* `is_false()(y)    // y == false`
 
 [funktions/predicates.h](include/funktions/predicates.h)
 
