@@ -53,6 +53,22 @@ constexpr auto gt(T &&value) {
     return fn_wrapper{[v = std::forward<T>(value)](auto &&other) { return std::forward<decltype(other)>(other) > v; }};
 }
 
+/**
+ * Wraps the y == true operation in a curried-form, such that is_true()(y) is equivalent to y == true.
+ * @return a predicate wrapped in an fn_wrapper that upon evaluation checks if the argument is equals to true.
+ */
+constexpr auto is_true() {
+    return fn_wrapper{[](auto &&other) { return static_cast<bool>(std::forward<decltype(other)>(other)); }};
+}
+
+/**
+ * Wraps the y == false operation in a curried-form, such that is_false()(y) is equivalent to y == false.
+ * @return a predicate wrapped in an fn_wrapper that upon evaluation checks if the argument is equals to false.
+ */
+constexpr auto is_false() {
+    return fn_wrapper{[](auto &&other) { return !static_cast<bool>(std::forward<decltype(other)>(other)); }};
+}
+
 }
 
 #endif

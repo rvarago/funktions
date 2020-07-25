@@ -109,10 +109,12 @@ These operations are already wrapped inside `fn_wrapper`'s to profit from logica
 
 Built-in operations:
 
-* `eq(x)(y) // y == x`
-* `ne(x)(y) // y != x`
-* `lt(x)(y) // y < x`
-* `gt(x)(y) // y > x`
+* `eq(x)(y)         // y == x`
+* `ne(x)(y)         // y != x`
+* `lt(x)(y)         // y < x`
+* `gt(x)(y)         // y > x`
+* `is_true()(y)     // y == true`
+* `is_false()(y)    // y == false`
 
 [funktions/predicates.h](include/funktions/predicates.h)
 

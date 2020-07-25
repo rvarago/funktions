@@ -46,3 +46,25 @@ TEST_CASE("gt(x)(y) is equivalent to y > x", "[predicates]") {
 
     CHECK(expected == got);
 }
+
+TEST_CASE("is_true()(y) is equivalent to y == true", "[predicates]") {
+    auto const [input, expected] = GENERATE(table<bool, bool>({
+        {true, true},
+        {false, false},
+    }));
+
+    auto const got = is_true()(input);
+
+    CHECK(expected == got);
+}
+
+TEST_CASE("is_false()(y) is equivalent to y == false", "[predicates]") {
+    auto const [input, expected] = GENERATE(table<bool, bool>({
+        {true, false},
+        {false, true},
+    }));
+
+    auto const got = is_false()(input);
+
+    CHECK(expected == got);
+}
