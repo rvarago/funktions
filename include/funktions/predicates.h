@@ -53,6 +53,17 @@ constexpr auto gt(T &&value) {
     return fn_wrapper{[v = std::forward<T>(value)](auto &&other) { return std::forward<decltype(other)>(other) > v; }};
 }
 
+/**
+ * Wraps the greater-than operation, such that gt(x)(y) is equivalent to y > x.
+ * @tparam T type of the argument to be checked for comparison.
+ * @param value argument to be checked for comparison.
+ * @return a predicate wrapped in an fn_wrapper that upon evaluation checks if the second argument is greater-than the
+ * first.
+ */
+constexpr auto is_true() {
+    return fn_wrapper{[](auto &&other) { return static_cast<bool>(std::forward<decltype(other)>(other)); }};
+}
+
 }
 
 #endif
