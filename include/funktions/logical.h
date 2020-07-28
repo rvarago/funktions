@@ -6,6 +6,19 @@
 namespace rvarago::funktions::dsl {
 
 /**
+ * Wraps the predicate _p_ (itself wrapped in `fn_wrapper`) to produce another predicate, which
+ * when invoked with a pack of arguments, forwards them to the predicate and then computes the logical-not
+ * of its outcome.
+ * @tparam Predicate type of the predicate.
+ * @param p predicate wrapped in a fn_wrapper.
+ * @return a new fn_wrapper that wraps the predicate and computes the logical-not of its outcome.
+ */
+template <typename Predicate>
+constexpr auto operator!(fn_wrapper<Predicate> const p) {
+    return fn_wrapper{[=](auto const &... args) { return !(p(args...)); }};
+}
+
+/**
  * Wraps the predicates _left_ and _right_ themselves wrapped in `fn_wrapper`'s to produce a third predicate, which
  * when invoked with a pack of arguments, forwards them to each predicate and computes the logical-and of their
  * outcomes.
