@@ -44,7 +44,7 @@ When invoked with a pack of arguments forwards them to the wrapped callable.
 
 ## <A name="logical_and"/>`logical_and`
 
-An overload for the `operator&` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate.
+An overload for the `operator&` that acts on two predicates wrapped in `fn_wrapper`s to produce a third predicate.
 
 When invoked with a pack of arguments, forwards them to each predicate and computes the logical-and of their outcomes.
 
@@ -63,7 +63,7 @@ auto const y = bt_2_6(x); // y = (x > 2) && (x < 6)
 
 ## <A name="logical_or"/>`logical_or`
 
-An overload for the `operator|` that acts on two predicates wrapped in `fn_wrapper`'s to produce a third predicate.
+An overload for the `operator|` that acts on two predicates wrapped in `fn_wrapper`s to produce a third predicate.
 
 When invoked with a pack of arguments, forwards them to each predicate and computes the logical-or of their outcomes.
 
@@ -82,7 +82,7 @@ auto const y = eq_2_or_6(x); // y = (x == 2) || (x == 6)
 
 ## <A name="chain"/>`chain`
 
-An overload for the `operator>>` that acts on two functions wrapped in `fn_wrapper`'s to produce a third function (their composition).
+An overload for the `operator>>` that acts on two functions wrapped in `fn_wrapper` to produce a third function (their composition).
 
 When invoked with a pack of arguments, forwards them to the first function and then applies its
 outcome into the second function.
@@ -105,7 +105,7 @@ auto const y = plus_1_then_square(x); // y = (x + 1) * (x + 1)
 
 A set of reusable and curried predicates for common operations that would otherwise likely be written as inline lambdas.
 
-These operations are already wrapped inside `fn_wrapper`'s to profit from logical combinators.
+These operations are already wrapped inside `fn_wrapper`s to profit from logical combinators.
 
 Built-in operations:
 
