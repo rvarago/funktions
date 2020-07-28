@@ -5,6 +5,18 @@
 using namespace rvarago::funktions;
 using namespace rvarago::funktions::dsl;
 
+TEST_CASE("fn_wrapper p1 can have the outcome of its evaluation logically-negated as !p", "[logical]") {
+    auto const is_true = [](auto const x) { return x == true; };
+
+    auto const [input, expected] = GENERATE(table<bool, bool>({
+        {true, false},
+        {false, true},
+    }));
+
+    auto const got = !fn(is_true)(input);
+    CHECK(expected == got);
+}
+
 TEST_CASE("fn_wrappers p1 and p2 can be combined by logical-ands as p1 & p2", "[logical]") {
     auto const gt_2 = [](auto const x) { return x > 2; };
     auto const lt_6 = [](auto const x) { return x < 6; };

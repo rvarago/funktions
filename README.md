@@ -27,6 +27,7 @@ auto const device = std::find_if(devices.begin(), devices.end(), query);
 # Utilities
 
 * [`fn_wrapper`](#fn_wrapper)
+* [`logical_not`](#logical_not)
 * [`logical_and`](#logical_and)
 * [`logical_or`](#logical_or)
 * [`chain`](#chain)
@@ -41,6 +42,24 @@ A wrapper around a generic function-like type to make DSLs created via operator-
 When invoked with a pack of arguments forwards them to the wrapped callable.
 
 [funktions/fnwrapper.h](include/funktions/fnwrapper.h)
+
+## <A name="logical_not"/>`logical_not`
+
+An overload for the `operator!` that acts on a predicate wrapped in `fn_wrapper` to produce another predicate.
+
+When invoked with a pack of arguments, forwards them to the predicate and computes the logical-not of its outcome.
+
+*Example*:
+
+```Cpp
+auto const eq_2 = [](auto const x) { return x == 2; };
+
+auto const not_eq_2 = !fn(eq_2);
+
+auto const y = not_eq_2(x); // y = !(x == 2)
+```
+
+[funktions/logical.h](include/funktions/logical.h)
 
 ## <A name="logical_and"/>`logical_and`
 
