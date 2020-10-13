@@ -21,27 +21,17 @@ struct device {
     status current_status;
 };
 
-auto get_vendor_id(device const &d) -> vendor_identifier {
-    return d.vendor_id;
-}
-
-auto get_current_status(device const &d) -> status {
-    return d.current_status;
-}
-
 }
 
 int main(int, char *[]) {
     auto const device_registry = std::vector<device>{
-        {identifier{1}, vendor_identifier{1}, status::Idle},
-        {identifier{2}, vendor_identifier{1}, status::Busy},
-        {identifier{3}, vendor_identifier{2}, status::Idle},
-        {identifier{4}, vendor_identifier{2}, status::Busy},
+        {identifier{1}, vendor_identifier{1}, status::Idle},    {identifier{2}, vendor_identifier{1}, status::Busy},
+        {identifier{3}, vendor_identifier{2}, status::Idle},    {identifier{4}, vendor_identifier{2}, status::Busy},
         {identifier{5}, vendor_identifier{2}, status::Waiting},
     };
 
     // Given a device d: d.vendor_id == 2 and d.current_status == status::Idle
-    auto const search_query = fn(get_vendor_id) >> eq(2) & fn(get_current_status) >> ne(status::Busy);
+    auto const search_query = fn(&device::vendor_id) >> eq(2) & fn(&device::current_status) >> ne(status::Busy);
 
     auto const device_found = std::find_if(device_registry.cbegin(), device_registry.cend(), search_query);
 
