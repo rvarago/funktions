@@ -15,8 +15,8 @@ std::vector<device> const devices = fetch_all_devices();
 
 // Given a device d:
 //  d.vendor_id == 2 and d.current_status != status::Busy
-auto const query = fn(get_vendor_id) >> eq(2)
-                    & fn(get_current_status) >> ne(status::Busy);
+auto const query = fn(&device::vendor_id) >> eq(2)
+                    & fn(&device::current_status) >> ne(status::Busy);
 
 // 'fn', 'eq', 'ne', '>>', and '&' are some of the utilities provided by
 // funktions to build fluent Domain-Specific Languages.

@@ -1,6 +1,7 @@
 #ifndef RVARAGO_FUNKTIONS_FNWRAPPER_H
 #define RVARAGO_FUNKTIONS_FNWRAPPER_H
 
+#include <functional>
 #include <utility>
 
 namespace rvarago::funktions {
@@ -18,9 +19,9 @@ class fn_wrapper {
     }
 
     template <typename... Args>
-    constexpr auto operator()(Args &&... args) const noexcept(noexcept(_f(std::forward<Args>(args)...)))
-        -> decltype(_f(std::forward<Args>(args)...)) {
-        return _f(std::forward<Args>(args)...);
+    constexpr auto operator()(Args &&... args) const noexcept(noexcept(std::invoke(_f, std::forward<Args>(args)...)))
+        -> decltype(std::invoke(_f, std::forward<Args>(args)...)) {
+        return std::invoke(_f, std::forward<Args>(args)...);
     }
 
     /**
