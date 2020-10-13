@@ -43,7 +43,7 @@ class fn_wrapper {
  * @return a fn_wrapper that wraps f.
  */
 template <typename Function>
-auto fn(Function &&f) -> fn_wrapper<Function> {
+constexpr auto fn(Function &&f) -> fn_wrapper<Function> {
     return fn_wrapper<Function>{std::forward<Function>(f)};
 }
 
