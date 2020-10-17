@@ -31,9 +31,9 @@ class fn_wrapper {
      * @return the outcome of calling the wrapped callable with the generic pack of arguments.
      */
     template <typename... Args>
-    constexpr auto operator()(Args &&... args) noexcept(noexcept(_f(std::forward<Args>(args)...)))
-        -> decltype(_f(std::forward<Args>(args)...)) {
-        return _f(std::forward<Args>(args)...);
+    constexpr auto operator()(Args &&... args) noexcept(noexcept(std::invoke(_f, std::forward<Args>(args)...)))
+        -> decltype(std::invoke(_f, std::forward<Args>(args)...)) {
+        return std::invoke(_f, std::forward<Args>(args)...);
     }
 };
 
