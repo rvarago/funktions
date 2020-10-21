@@ -11,7 +11,7 @@ pool:
 steps:
 
   - script: |
-      cmake . -DBUILD_TESTS=ON -DBUILD_EXAMPLES=ON && cmake --build .
+      cmake . -DBUILD_EXAMPLES=ON && cmake --build .
     displayName: 'Build'
 
   - script: |
